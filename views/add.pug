@@ -1,0 +1,22 @@
+extends ./layout.pug
+block extra
+    script(src="js/add.js")
+block content
+    div.row
+        div.col
+            form(action="/add" method="POST" id="addForm")
+                each user in users
+                    div.form-check.form-group
+                        input(class="form-check-input" type="radio" name="heater" value=user._id id="h"+user._id)
+                        label(class="form-check-label" for="h"+user._id)=user.name 
+                            
+                each user in users
+                    div.form-check.form-group
+                        input(class="form-check-input" type="checkbox" name="participants[]" value=user._id id="user"+user._id)
+                        label(class="form-check-label" for="user"+user._id)=user.name 
+                
+                div.form-group
+                    label(for="date") Fecha
+                    input(type="date" name="date" id="date" class="form-control") 
+                input(type="submit", value="Enviar" class="btn btn-info")
+
