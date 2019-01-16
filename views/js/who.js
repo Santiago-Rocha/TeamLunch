@@ -11,8 +11,8 @@ $(function(){
             data: data,
             success: function(data){
                 console.log(data);
-                var text = $("#turn").text().replace("...",data[0].docs[0].name+" "+data[0].docs[0].last_name)
-                $("#turn").text(text)
+                var text = data.length == 1  ? data[0].nick_name  : data[0].nick_name +" y "+data[1].nick_name;
+                $("#turn").text("Hoy Calienta "+text);
             }
           });
     });

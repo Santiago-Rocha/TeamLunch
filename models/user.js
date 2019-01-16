@@ -8,6 +8,7 @@ mongoose.connect("mongodb://srd98:Thruman98@ds211083.mlab.com:11083/teamlunch-da
 var user_schema =  new Schema({
     name: String,
     last_name: String,
+    nick_name: String,
     last_lunch: Date,
     benefits: Number
 });

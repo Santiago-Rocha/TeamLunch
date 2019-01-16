@@ -41,8 +41,11 @@ app.post("/who", function(req,res){
     ], function(err, docs){
         console.log(docs);
         if(err) res.send("algo salio mal");
-        else if(req.body.participants.length >= 4) res.send([docs[0],docs[1]]);
-        else res.send([docs[0]]);
+        else if(req.body.participants.length > 4){
+            if(docs[0].docs.length >= 2) res.send([docs[0].docs[0],docs[0].docs[1]]);
+            else res.send([docs[0].docs[0],docs[1].docs[0]]); 
+        }
+        else res.send([docs[0].docs[0]]);
     });
 });
 
@@ -53,7 +56,7 @@ app.get("/user",function(req, res){
 });
 
 app.post("/user", function(req, res){
-    var user =  new User({name: req.body.name, last_name: req.body.last_name, last_lunch: req.body.lunch, benefits: req.body.benefits});
+    var user =  new User({name: req.body.name, last_name: req.body.last_name, nick_name : req.body.nickname, last_lunch: req.body.lunch, benefits: req.body.benefits});
     user.save(function(err){
         if(err) res.send("algo salio mal");
         else res.send("usuario guardado");
@@ -108,7 +111,7 @@ function participantsLunch(pArr, next){
 
 app.get("/hola", function(req, res){
 
-    Lunch.remove({}, function (err) {
+    User.remove({}, function (err) {
         res.send("lo borre");
       });
 });
