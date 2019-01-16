@@ -1,14 +1,18 @@
 extends ./layout.pug
 block content
     div.row
-        h1 Hola prros
-        form(action="/user" method="POST")
-            input(type="text" name="name")
-            input(type="text" name="last_name")
-            input(type="date", name="lunch")
-            input(type="number", name="benefits")
-            input(type="submit", value="Enviar")
-        br
-        form(action="/almuerzo", method="POST")
-            input(type="date" name="date")
-            input(type="submit", value="Enviar2")
+        div.col
+            form(action="/user" method="POST")
+            div.form-group
+                label(for="name") Nombre
+                input(type="text" name="name" class="form-control")
+            div.form-group
+                label(for="last_name") Apellido
+                input(type="text" name="last_name" class="form-control")
+            div.form-group
+                label(for="lunch") Ultima vez que calentó
+                input(type="date", name="lunch" class="form-control")
+            div.form-group
+                label(for="benefits") Beneficios
+                input(type="number", name="benefits" class="form-control")
+            input(type="submit", value="Enviar"  class="btn btn-info")

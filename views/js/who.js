@@ -1,6 +1,6 @@
 $(function(){
     
-    $('#addForm').submit( function(e){
+    $('#whoForm').submit( function(e){
         e.preventDefault();
         var action = $(this).attr( "action" );
         var method = $(this).attr("method");
@@ -10,15 +10,10 @@ $(function(){
             url: action,
             data: data,
             success: function(data){
-                toastr.success('Accion Completa', 'Almuerzo registrado exitosamente')
+                console.log(data);
+                var text = $("#turn").text().replace("...",data[0].docs[0].name+" "+data[0].docs[0].last_name)
+                $("#turn").text(text)
             }
           });
-    });
-
-    var limit = 2;
-    $("input[name='heater[]']").on('change', function(evt) {
-       if($("input[name='heater[]']:checked").length > limit) {
-           this.checked = false;
-       }
     });
 })

@@ -28,18 +28,21 @@ app.post("/who", function(req,res){
         },
         {
             $group :{
-                _id: '$benefits',
+                _id: { benefits: { $multiply: ['$benefits',-1]}, date: '$last_lunch'},
                 docs: {$push: '$$ROOT'}
             }
         },
         {
-            $sort: {_id: -1, last_lunch: -1}
+            $sort: {_id: 1}
         },
         {
-            $limit: 1
+            $limit: 2
         }
     ], function(err, docs){
         console.log(docs);
+        if(err) res.send("algo salio mal");
+        else if(req.body.participants.length >= 4) res.send([docs[0],docs[1]]);
+        else res.send([docs[0]]);
     });
 });
 
@@ -88,7 +91,7 @@ app.post("/add", function(req,res){
 })
 
 function heaterLunch(heater, date ,next){
-    User.updateOne({_id: heater}, { "$set" : {benefits: 0, last_lunch: date}}, function(err,doc){
+    User.updateMany({_id: heater}, { "$set" : {benefits: 0, last_lunch: date}}, function(err,doc){
         if(err) next(err);
         else next(null);
     });

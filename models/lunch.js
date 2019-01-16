@@ -7,7 +7,7 @@ mongoose.connect("mongodb://localhost/almuerzo", {useNewUrlParser:true});
  
 var lunch_schema =  new Schema({
     date: Date,
-    heater: {type: Schema.ObjectId, ref: "User" },
+    heater: [{type: Schema.ObjectId, ref: "User" }],
     participants: [{type: Schema.ObjectId, ref: "User" }]
 });
 
