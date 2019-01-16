@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("views"));
 app.set("view engine","pug");
-
+app.set('port', process.env.PORT || 8080);
 
 app.get("/", function(req,res){
     User.find(function(err,doc){
@@ -113,4 +113,4 @@ app.get("/hola", function(req, res){
       });
 });
 
-app.listen(8080);
+app.listen(app.get('port'));
