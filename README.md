@@ -1,4 +1,4 @@
-# TeamLunch
+# TeamLunch [![CircleCI](https://circleci.com/gh/Santiago-Rocha/TeamLunch.svg?style=svg)](https://circleci.com/gh/Santiago-Rocha/TeamLunch)
 
 This project is made whit node.js and mongoDB
 

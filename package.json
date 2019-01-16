@@ -4,6 +4,7 @@
   "description": "App para manejar los almuerzos",
   "main": "index.js",
   "scripts": {
+    "start" : "node app.js"
   },
   "repository": {
     "type": "git",
